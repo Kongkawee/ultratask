@@ -1,5 +1,6 @@
 'use client'
 
+import Image from 'next/image'
 import { signOut, useSession } from 'next-auth/react'
 
 export default function NavBar() {
@@ -17,10 +18,12 @@ export default function NavBar() {
             <p className="text-sm text-gray-500">{user.email}</p>
           </div>
           {user.image && (
-            <img
+            <Image
               src={user.image}
               alt="User avatar"
               className="w-10 h-10 rounded-full border"
+              width={40}
+              height={40}
             />
           )}
           <button

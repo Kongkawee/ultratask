@@ -5,6 +5,8 @@ import { useSession } from 'next-auth/react'
 import { useEffect, useState } from 'react'
 import { useRouter } from 'next/navigation'
 import { useProjectContext } from '@/context/ProjectContext'
+import LoadingSpinner from '@/components/LoadingSpinner'
+import TaskDetailModal from '@/components/TaskDetailModal'
 
 type Task = {
   id: string
@@ -30,6 +32,7 @@ export default function HomePage() {
   const { selectedProjectId } = useProjectContext()
 
   const [tasks, setTasks] = useState<Task[]>([])
+  const [selectedTask, setSelectedTask] = useState<Task | null>(null)
   const [projectName, setProjectName] = useState<string>('All')
   const [loading, setLoading] = useState(true)
 
@@ -102,7 +105,7 @@ export default function HomePage() {
   }
 
   if (status === 'loading' || loading) {
-    return <p className="p-4">Loading...</p>
+    return <LoadingSpinner />
   }
 
   const groupedTasks = {
@@ -133,10 +136,19 @@ export default function HomePage() {
             <h2 className="text-lg font-semibold mb-4">
               {statusLabels[statusKey as TaskStatus]}
             </h2>
+
+            <TaskDetailModal
+              task={selectedTask}
+              onClose={() => setSelectedTask(null)}
+              onChangeStatus={(id) => console.log('Change status', id)}
+              onDelete={(id) => console.log('Delete task', id)}
+            />
+
             <div className="space-y-3">
               {taskList.map(task => (
                 <div
                   key={task.id}
+                  onClick={() => setSelectedTask(task)}
                   className="p-3 rounded-lg border border-gray-200 bg-gray-50 hover:shadow-sm transition"
                 >
                   <p className="font-medium">{task.title}</p>
