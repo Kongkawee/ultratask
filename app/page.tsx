@@ -8,6 +8,7 @@ import { useProjectContext } from '@/context/ProjectContext'
 import LoadingSpinner from '@/components/LoadingSpinner'
 import TaskDetailModal from '@/components/TaskDetailModal'
 
+
 type Task = {
   id: string
   title: string
@@ -27,7 +28,7 @@ const statusLabels: Record<TaskStatus, string> = {
 }
 
 export default function HomePage() {
-  const { data: session, status } = useSession()
+  const { status } = useSession()
   const router = useRouter()
   const { selectedProjectId } = useProjectContext()
 

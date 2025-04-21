@@ -14,7 +14,10 @@ interface TaskDetailModalProps {
   task: Task | null
   onClose: () => void
   onTaskUpdated?: () => void
+  onChangeStatus?: (taskId: string) => void
+  onDelete?: (taskId: string) => void
 }
+
 
 const statusLabel: Record<TaskStatus, string> = {
   PENDING: '🕓 Pending',

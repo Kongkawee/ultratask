@@ -10,7 +10,7 @@ import { ProjectProvider } from '@/context/ProjectContext'
 import { usePathname } from 'next/navigation'
 
 export default function RootLayout({ children }: { children: ReactNode }) {
-  const { projects, createProject, loading } = useProjects()
+  const { projects, createProject } = useProjects()
   const pathname = usePathname()
   const isAuthPage = pathname === '/auth'
 
