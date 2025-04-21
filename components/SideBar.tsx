@@ -12,7 +12,7 @@ interface Project {
 interface SideBarProps {
   projects: Project[]
   onCreateProject: () => void
-  onRefreshProjects?: () => void // optional: refresh project list after delete
+  onRefreshProjects?: () => void
 }
 
 export default function SideBar({ projects, onCreateProject, onRefreshProjects }: SideBarProps) {

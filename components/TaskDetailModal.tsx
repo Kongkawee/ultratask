@@ -95,7 +95,9 @@ export default function TaskDetailModal({
         <h2 className="text-xl font-bold mb-2">{task.title}</h2>
 
         {task.description && (
-          <p className="text-gray-600 mb-4">{task.description}</p>
+          <div className="border border-gray-200 rounded-md p-3 mb-4 bg-gray-50 text-gray-700 text-sm">
+            {task.description}
+          </div>
         )}
 
         <p className="text-sm text-gray-500 mb-4">
